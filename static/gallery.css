@@ -1,0 +1,15 @@
+img {
+    float: left;
+    width: 30%;
+    margin: 1.66%
+}
+
+h1 {
+    font-family: 'Raleway Dots';
+    margin: 1.66%;
+    font-size: 65px;
+    font-weight: 600;
+    width: 30%;
+    border-bottom: dotted peachpuff 5px;
+    padding-bottom: 0.8%;
+}
