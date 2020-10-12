@@ -1,0 +1,30 @@
+#image1 {
+    width: 30%;
+    margin: 1.66%;
+    margin-right: 3%;
+}
+
+h1 {
+    font-family: 'Raleway Dots';
+    margin: 1.66%;
+    font-size: 65px;
+    font-weight: 600;
+    width: 30%;
+    border-bottom: dotted 5px;
+    padding-bottom: 0.8%;
+}
+
+.form-button {
+    padding: 10px 10px;
+    margin: 10px 0px;
+    width: 180px;
+}
+
+.form-field {
+    margin: 5px 0px;
+    width: 220px;
+}
+
+body {
+    margin: 10px 20px;
+}
