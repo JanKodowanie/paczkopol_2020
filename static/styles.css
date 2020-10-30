@@ -1,0 +1,157 @@
+
+html, body {
+    font-family: 'PT Sans', sans-serif;
+    margin: 0;
+    width: 100%; 
+    height: 100%;
+}
+
+h1 {
+    font-size: 1.2vw;
+    font-weight: 700;
+    margin: 0;
+    text-align: left;
+}
+
+.button1 {
+    font-size: 0.7vw;
+    border: none;
+    padding: 2%;
+    color: white;
+    text-decoration: none;
+    background-color: crimson;
+}
+
+.button1:hover {
+    background-color: rgb(184, 15, 49);
+}
+
+#author {
+    color: white;
+    margin: 8% 0;
+    font-size: 0.8vw;
+    font-weight: 700;
+}
+
+#description {
+    font-size: 0.8vw;
+    margin-top: 6%;
+    margin-bottom: 9.5%;
+}
+
+nav {
+    font-weight: 400;
+    font-size: 0.6vw;
+    padding: 0.3vw 0.3vw;
+    background-color: rgba(0, 0, 0, 0.801);
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    margin-right: 1.2%;
+}
+
+a.nav-item:hover {
+    color: #b5dcff;
+} 
+
+header {
+    margin-top: 3%;
+    background-color: #b5dcff;
+    display: flex;
+    padding: 3% 5%;
+    padding-left: 8%;
+    text-align: justify;
+    justify-content: space-between;
+}
+
+.intro {
+    margin-right: 5%;
+}
+
+#logo {
+    width: 60%;
+}
+
+.content {
+    margin: 0 15%; 
+}
+
+.middle {
+    margin-top: 3%;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: space-between
+}
+
+#middle-image-1 {
+    width: 19.5%;
+}
+
+#middle-image-2 {
+    width: 52%;
+}
+
+#middle-image-3 {
+    width: 23.415%;
+}
+
+#repo-link {
+    color: white;
+    text-decoration: none;
+    margin-left: 1.2%;
+}
+
+#repo-link:hover {
+    color: #b5dcff;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: #b5dcff;
+    background-color: rgb(0, 0, 0);
+    font-weight: 400;
+    font-size: 0.6vw;;
+    padding: 0.3vw 0.3vw;
+}
+
+#registration-view {
+    margin: 5% 0%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.greetings {
+    margin: 0;
+    font-size: 0.8vw;
+}
+
+.form-list {
+    list-style: none;
+    margin: 0.1vw;
+}
+
+.form-list li {
+    margin: 0.5vw;
+}
+
+.form-list input:not([type=radio]) {
+    font-size: 0.7vw; 
+    width: 14.5vw; 
+}
+
+.form-list input[type=file] {
+    font-size: 0.6vw;
+    margin-left: 0.3vw; 
+}
+
+.form-list input[type=radio] {
+    font-size: 0.6vw;
+}
+
+.form-list label {
+    font-size: 0.7vw;  
+}

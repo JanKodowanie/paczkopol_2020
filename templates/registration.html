@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
+    <title>Paczkopol</title>
+</head>
+    <body>
+        <nav>
+            <a class="nav-item" href="/">Strona główna</a>
+            <a class="nav-item" href="/sender/sign-up">Rejestracja</a>
+        </nav>
+        <div class="content">
+            <section id="registration-view">
+                <div class="greetings">
+                    <h1>Rodzina Paczkopolu czeka na Ciebie!</h1>
+                    <p>Zarejestruj się, by zyskać szansę na liczne rabaty oraz możliwość udziału w ciekawych konkursach.
+                        <br> Śledź swoje paczki z dowolnego miejsca na Ziemi!
+                    </p>
+                </div>
+                <form class="registration-form" action="sign-up">
+                    <ul class="form-list">
+                        <li>
+                            <input type="text" id="firstname" name="firstname" placeholder="Imię">
+                            <span id="firstname-error"></span>
+                        </li>
+                        <li><input type="text" id="lastname" name="lastname" placeholder="Nazwisko"></li>
+                        <li>
+                            <input type="text" id="login" name="login" placeholder="Login">
+                            <span id="login-available-message"></span>
+                        </li>
+                        <li><input type="password" id="password" name="password" placeholder="Hasło"></li>
+                        <li><input type="password" id="repassword" name="repassword" placeholder="Powtórz hasło"></li>
+                        <li><label>Płeć:</label>
+                            <input type="radio" name="gender" value="male"><label for="male">Mężczyzna</label>
+                            <input type="radio" name="gender" value="female"><label for="female">Kobieta</label></li>
+                        <li>
+                            <label for="photo">Zdjęcie profilowe:</label>
+                            <input type="file" name="photo" accept=".png, .jpg">
+                        </li>
+                        <li><button class="button1" type="submit" href="/">Zarejestruj się!</button>
+                    </ul>
+                </form>
+            </section>
+        </div>
+        <footer>
+            <span id="pamw">Programowanie aplikacji mobilnych i webowych, 2020</span> 
+            <a id="repo-link" target="_blank" href="https://github.com/JanKodowanie/paczkopol_2020" id="repo">Repozytorium Github</a>
+        </footer>
+    </body>
+</html>
+

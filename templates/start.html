@@ -3,28 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="static/start.css">
-    <link href="https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
     <title>Paczkopol</title>
 </head>
-<body>
-    <h1>PACZKOPOL</h1>
-    <img id="image1" src=https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQvK8_M7-Se5RnxTL9Fy3-0-wjhDVYUjwroiQ&usqp=CAU>
-    <form id="newsletter-form">
-        <h2>Newsletter:</h2>
-        <ul>
-            <li class="form-field"><input type="text" name="first_and_last" placeholder="Imię i nazwisko"></li>
-            <li class="form-field"><input type="text" name="email" placeholder="Adres email"></li>
-            <button class="form-button">Zapisz się do newslettera</button>
-        </ul>
-    </form>
-    <form>
-        <h2>Zaloguj się:</h2>
-        <ul>
-            <li class="form-field"><input type="text" name="username" placeholder="Login"></li>
-            <li class="form-field"><input type="text" name="password" placeholder="Hasło"></li>
-            <button class="form-button">Zaloguj się</button>
-        </ul>
-    </form>
+    <body>
+        <nav>
+            <a class="nav-item" href="/">Strona główna</a>
+            <a class="nav-item" href="/sender/sign-up">Rejestracja</a>
+        </nav>
+        <div class="content">
+            <header>  
+                <section class="intro">
+                    <h1>Lider innowacyjności wśród polskich kurierów!</h1>
+                    <p id="description">Chcesz wysłać babci prezent na urodziny? A może potrzebujesz natychmiast dostarczyć ważną dokumentację do urzędu?<br>
+                        Nasi niezawodni kurierzy poradzą sobie w każdej sytuacji i dostarczą twoją przesyłkę tak szybko, jak husaria dotarła pod Wiedeń!</p>
+                    <a id="register-main-page" class="button1" href='/sender/sign-up'>Zarejestruj się już dziś!</a>
+                    <h2 id="author">Autor: Jan Dobrowolski</h2>
+                </section>    
+                <img id="logo" src="/static/Paczkopol.png">
+            </header>
+            <section class="middle">
+                <img id="middle-image-1" src="/static/middle1.webp">
+                <img id="middle-image-2" src="/static/middle2.jpeg">
+                <img id="middle-image-3" src="/static/middle3.jpg">
+            </section>
+        </div>
+        <footer>
+            <span id="pamw">Programowanie aplikacji mobilnych i webowych, 2020</span> 
+            <a id="repo-link" target="_blank" href="https://github.com/JanKodowanie/paczkopol_2020" id="repo">Repozytorium Github</a>
+        </footer>
+    </body>
 </html>
 
