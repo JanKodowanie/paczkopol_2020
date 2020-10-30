@@ -84,7 +84,7 @@ validateLogin = function () {
         }
         xhr.send()
     } else {
-        loginMessage = "Podaj od 3 do 12 małych liter"
+        loginMessage = "Login: podaj od 3 do 12 małych liter"
         fieldState['login'] = false
         errorMsg.className = "error-mes"
         errorMsg.innerText = loginMessage
