@@ -127,6 +127,8 @@ footer {
 .greetings {
     margin: 0;
     font-size: 0.8vw;
+    width: 32vw; 
+    text-align: justify;
 }
 
 .form-list {
@@ -154,4 +156,25 @@ footer {
 
 .form-list label {
     font-size: 0.7vw;  
+}
+
+.error-list {
+    width: 12vw; 
+    list-style: none;
+    margin: 0.05vw;
+}
+
+.error-list li {
+    font-size: 0.7vw; 
+    margin: 0.6vw;
+    color: crimson;
+    display: block;
+}
+
+.error-mes-hidden {
+    visibility: hidden;
+}
+
+.error-mes {
+    visibility: visible;
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <script src="/static/registration.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
     <title>Paczkopol</title>
 </head>
@@ -20,27 +21,42 @@
                         <br> Śledź swoje paczki z dowolnego miejsca na Ziemi!
                     </p>
                 </div>
-                <form class="registration-form" action="sign-up">
+                <ul class="error-list">
+                    <li class="error-mes-hidden" id="firstname-error"></li>
+                    <li class="error-mes-hidden" id="lastname-error"></li>
+                    <li class="error-mes-hidden" id="login-error"></li>
+                    <li class="error-mes-hidden" id="password-error"></li>
+                    <li class="error-mes-hidden" id="password2-error"></li>
+                    <li class="error-mes-hidden" id="sex-error"></li>
+                    <li class="error-mes-hidden" id="photo-error"></li>
+                </ul>
+                <form class="registration-form" id="regform" action="https://infinite-hamlet-29399.herokuapp.com/sender/register" method="POST" enctype="multipart/form-data">
                     <ul class="form-list">
                         <li>
                             <input type="text" id="firstname" name="firstname" placeholder="Imię">
-                            <span id="firstname-error"></span>
                         </li>
-                        <li><input type="text" id="lastname" name="lastname" placeholder="Nazwisko"></li>
+                        <li> 
+                            <input type="text" id="lastname" name="lastname" placeholder="Nazwisko">
+                        </li>
                         <li>
                             <input type="text" id="login" name="login" placeholder="Login">
-                            <span id="login-available-message"></span>
                         </li>
-                        <li><input type="password" id="password" name="password" placeholder="Hasło"></li>
-                        <li><input type="password" id="repassword" name="repassword" placeholder="Powtórz hasło"></li>
-                        <li><label>Płeć:</label>
-                            <input type="radio" name="gender" value="male"><label for="male">Mężczyzna</label>
-                            <input type="radio" name="gender" value="female"><label for="female">Kobieta</label></li>
+                        <li>
+                            <input type="password" id="password" name="password" placeholder="Hasło">
+                        </li>
+                        <li>
+                            <input type="password" id="password2" name="password2" placeholder="Powtórz hasło">
+                        </li>
+                        <li>
+                            <label>Płeć:</label>
+                            <input checked type="radio" name="sex" value="M"><label for="M">Mężczyzna</label>
+                            <input type="radio" name="sex" value="F"><label for="F">Kobieta</label>
+                        </li>
                         <li>
                             <label for="photo">Zdjęcie profilowe:</label>
-                            <input type="file" name="photo" accept=".png, .jpg">
+                            <input type="file" id="photo" name="photo" accept=".png, .jpg">
                         </li>
-                        <li><button class="button1" type="submit" href="/">Zarejestruj się!</button>
+                        <li><button class="button1" type="submit">Zarejestruj się!</button>
                     </ul>
                 </form>
             </section>
