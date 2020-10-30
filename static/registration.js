@@ -4,10 +4,10 @@ var re3 = new RegExp("[a-z]{3,12}")
 var re4 = new RegExp("^.*\.(jpg|png)")
 var firstNameMessage = "Podaj poprawne imię"
 var lastNameMessage = "Podaj poprawne nazwisko"
-var loginMessage = "Podaj od 3 do 12 małych liter"
-var passwordMessage = "Podaj min. 8 znaków"
+var loginMessage = "Login: podaj od 3 do 12 małych liter"
+var passwordMessage = "Hasło: podaj min. 8 znaków"
 var password2Message = "Hasła muszą się zgadzać"
-var photoMessage = "Załącz plik jpg lub png"
+var photoMessage = "Zdjęcie: załącz plik jpg lub png"
 
 var fieldState = {
     "firstname": false,
