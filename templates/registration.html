@@ -30,7 +30,7 @@
                     <li class="error-mes-hidden" id="sex-error"></li>
                     <li class="error-mes-hidden" id="photo-error"></li>
                 </ul>
-                <form class="registration-form" id="regform" action="https://infinite-hamlet-29399.herokuapp.com/sender/register" method="POST" enctype="multipart/form-data">
+                <form class="registration-form" id="regform" action="/sender/register" method="POST" enctype="multipart/form-data">
                     <ul class="form-list">
                         <li>
                             <input type="text" id="firstname" name="firstname" placeholder="Imię">
@@ -42,20 +42,17 @@
                             <input type="text" id="login" name="login" placeholder="Login">
                         </li>
                         <li>
+                            <input type="email" id="email" name="email" placeholder="Email">
+                        </li>
+                        <li>
                             <input type="password" id="password" name="password" placeholder="Hasło">
                         </li>
                         <li>
                             <input type="password" id="password2" name="password2" placeholder="Powtórz hasło">
                         </li>
-                        <li>
-                            <label>Płeć:</label>
-                            <input checked type="radio" name="sex" value="M"><label for="M">Mężczyzna</label>
-                            <input type="radio" name="sex" value="F"><label for="F">Kobieta</label>
-                        </li>
-                        <li>
-                            <label for="photo">Zdjęcie profilowe:</label>
-                            <input type="file" id="photo" name="photo" accept=".png, .jpg">
-                        </li>
+                        <li> 
+                            <input type="text" id="address" name="address" placeholder="Adres">
+                        </li>             
                         <li><button class="button1" type="submit">Zarejestruj się!</button>
                     </ul>
                 </form>
