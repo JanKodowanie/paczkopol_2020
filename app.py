@@ -152,6 +152,7 @@ def logout_view():
     session.clear()
     response = make_response("", 301)
     response.headers["Location"] = "/"
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     return response
 
 
