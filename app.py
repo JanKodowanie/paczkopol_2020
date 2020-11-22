@@ -4,6 +4,7 @@ from os import getenv
 from dotenv import load_dotenv
 from redis import StrictRedis
 from bcrypt import checkpw, gensalt, hashpw
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -41,6 +42,14 @@ def check_if_user_exists(login):
     return db.hexists(f'user: {login}', 'email')
 
 
+def check_if_user_credentials_are_valid(login, password): 
+    if not check_if_user_exists(login):
+        return False
+
+    hashed_pw = db.hget(f'user: {login}', 'password')
+    return checkpw(password.encode(), hashed_pw)
+
+
 @app.route('/')
 def start():
     return render_template('start.html')
@@ -76,6 +85,43 @@ def registration_view_post():
     response.headers["Location"] = "/sender/login"
 
     return response
+
+
+@app.route('/sender/login', methods=['GET'])
+def login_view_get():
+    return render_template('login.html')
+
+
+@app.route('/sender/login', methods=['POST'])
+def login_view_post():
+    data = {}
+    data['login'] = request.form.get("login", None)  
+    data['password'] = request.form.get("password", None)
+    
+    for k, v in data.items():
+        if not v:
+            return jsonify(error=f"{k} field cannot be empty."), 400
+
+    if check_if_user_credentials_are_valid(data['login'], data['password']):
+        session["login"] = login
+        session["timestamp"] = datetime.now()
+        response = make_response("", 301)
+        response.headers["Location"] = "/sender/dashboard"
+
+    return jsonify(error=f"Failed to login user with credentials given."), 400    
+
+
+@app.route('/sender/logout', methods=['GET'])
+def logout_view():
+    session.clear()
+    response = make_response("", 301)
+    response.headers["Location"] = "/"
+
+
+@app.route('/sender/dashboard', methods=['GET'])
+def dashboard_view():
+    return render_template('dashboard.html')
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)

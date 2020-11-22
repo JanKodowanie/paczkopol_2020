@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
-    <script src="/static/registration.js"></script>
+    <!-- <script src="/static/registration.js"></script> -->
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
     <title>Paczkopol</title>
 </head>
@@ -15,46 +15,26 @@
             <a class="nav-item" href="/sender/login">Zaloguj się</a>
         </nav>
         <div class="content">
-            <section id="registration-view">
+            <section id="login-view">
                 <div class="greetings">
-                    <h1>Rodzina Paczkopolu czeka na Ciebie!</h1>
+                    <h1>Nie masz jeszcze konta?</h1>
                     <p>Zarejestruj się, by zyskać szansę na liczne rabaty oraz możliwość udziału w ciekawych konkursach.
                         <br> Śledź swoje paczki z dowolnego miejsca na Ziemi!
                     </p>
                 </div>
                 <ul class="error-list">
-                    <li class="error-mes-hidden" id="firstname-error"></li>
-                    <li class="error-mes-hidden" id="lastname-error"></li>
-                    <li class="error-mes-hidden" id="login-error"></li>
-                    <li class="error-mes-hidden" id="password-error"></li>
-                    <li class="error-mes-hidden" id="password2-error"></li>
-                    <li class="error-mes-hidden" id="address-error"></li>
+                    <li class="error-mes-hidden" id="signin-error"></li>
                 </ul>
-                <form class="registration-form" id="regform" action="/sender/register" method="POST" enctype="multipart/form-data">
+                <form class="registration-form" id="loginform" action="/sender/login" method="POST" enctype="multipart/form-data">
                     <ul class="form-list">
-                        <li>
-                            <input type="text" id="firstname" name="firstname" placeholder="Imię">
-                        </li>
-                        <li> 
-                            <input type="text" id="lastname" name="lastname" placeholder="Nazwisko">
-                        </li>
                         <li>
                             <input type="text" id="login" name="login" placeholder="Login">
                         </li>
                         <li>
-                            <input type="email" id="email" name="email" placeholder="Email">
-                        </li>
-                        <li>
                             <input type="password" id="password" name="password" placeholder="Hasło">
-                        </li>
+                        </li>         
                         <li>
-                            <input type="password" id="password2" name="password2" placeholder="Powtórz hasło">
-                        </li>
-                        <li> 
-                            <input type="text" id="address" name="address" placeholder="Adres">
-                        </li>             
-                        <li>
-                            <button class="button1" type="submit">Zarejestruj się!</button>
+                            <button class="button1" type="submit">Zaloguj się</button>
                         </li> 
                     </ul>
                 </form>
@@ -66,4 +46,3 @@
         </footer>
     </body>
 </html>
-

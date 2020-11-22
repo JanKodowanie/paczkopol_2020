@@ -124,6 +124,12 @@ footer {
     justify-content: space-between;
 }
 
+#login-view {
+    margin: 5% 0%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .greetings {
     margin: 0;
     font-size: 0.8vw;
