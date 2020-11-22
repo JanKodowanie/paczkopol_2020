@@ -206,8 +206,8 @@ def dashboard_view():
 
         errors = {}
         for k, v in data.items():
-        if not v:
-            return jsonify(error="field cannot be empty."), 400
+            if not v:
+                return jsonify(error="field cannot be empty."), 400
 
         if data['recipient'] and not re.match("[\w\s\-]+", data['recipient']):
             errors['recipient'] = "this field can contain only alphanumeric, - and _ characters"
