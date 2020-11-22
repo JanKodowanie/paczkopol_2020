@@ -243,7 +243,7 @@ def dashboard_view():
         if not check_if_parcel_exists(id_):
             return jsonify(error="Parcel with this id does not exist"), 404
 
-        if db.hget(f'parcel: {id_}', 'user') != session['login']
+        if db.hget(f'parcel: {id_}', 'user') != session['login']:
             return jsonify(error="This parcel does not belong to you"), 403
 
         db.delete(id_)
