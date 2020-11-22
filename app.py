@@ -8,6 +8,8 @@ from bcrypt import checkpw, gensalt, hashpw
 from datetime import datetime
 import sys
 import re
+import uuid
+from uuid import UUID
 
 
 app = Flask(__name__)
@@ -48,6 +50,10 @@ def save_user(validated_data):
     return True
 
 
+def check_if_parcel_exists(id_):
+    return db.hexists(f'parcel: {id_}', 'recipient')
+
+
 def check_if_user_exists(login):
     return db.hexists(f'user: {login}', 'email')
 
@@ -58,6 +64,20 @@ def check_if_user_credentials_are_valid(login, password):
 
     hashed_pw = db.hget(f'user: {login}', 'password')
     return checkpw(password.encode(), hashed_pw)
+
+
+def save_parcel_label(validated_data):
+    id_ = uuid.uuid4()
+    while check_if_parcel_exists(id_):
+        id_ = uuid.uuid4()
+
+    try:
+        for k, v in validated_data.items():
+            db.hset(f'parcel: {id_}', k, v)
+    except Exception:
+        return False
+
+    return True
 
 
 @app.route('/')
@@ -97,6 +117,9 @@ def registration_view_post():
     if data['lastname'] and not re.match("^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+$", data['lastname']):
         errors['lastname'] = "provide a valid lastname"
 
+    if data['login'] and check_if_user_exists(data['login']):
+        errors['login'] = "login already taken"
+
     if data['login'] and not re.match("[a-z]{3,12}", data['login']):
         errors['login'] = "login must contain 3-12 small letters"
 
@@ -135,7 +158,7 @@ def login_view_post():
     
     for k, v in data.items():
         if not v:
-            return jsonify(error=f"{k} field cannot be empty."), 400
+            errors[k] = "field cannot be empty"
 
     if check_if_user_credentials_are_valid(data['login'], data['password']):
         session["login"] = data['login']
@@ -156,12 +179,75 @@ def logout_view():
     return response
 
 
-@app.route('/sender/dashboard', methods=['GET'])
+@app.route('/sender/dashboard', methods=['GET', 'POST', 'DELETE'])
 def dashboard_view():
     if 'login' not in session:
-        return jsonify(error="user not authenticated"), 403
+        return jsonify(error="user not authenticated"), 401
 
-    return render_template('dashboard.html')
+    if request.method == 'GET':
+        user_labels = []
+        for key in db.scan_iter("parcel:*"):
+            if db.hget(key, 'user') == session['login']:
+                label_data = {
+                    'id': key.split(' ')[1],
+                    'recipient': db.hget(key, 'recipient'),
+                    'deposit': db.hget(key, 'deposit'),
+                    'size': db.hget(key, 'size')
+                }
+                user_labels.append(label_data)
+
+        return render_template('dashboard.html', labels=user_labels)
+
+    if request.method == 'POST':
+        data = {}
+        data['recipient'] = request.form.get("recipient")
+        data['deposit'] = request.form.get("deposit")  
+        data['size'] = request.form.get("size")     
+
+        errors = {}
+        for k, v in data.items():
+        if not v:
+            return jsonify(error="field cannot be empty."), 400
+
+        if data['recipient'] and not re.match("[\w\s\-]+", data['recipient']):
+            errors['recipient'] = "this field can contain only alphanumeric, - and _ characters"
+
+        if data['deposit'] and not re.match("[\w\s\-]+", data['deposit']):
+            errors['deposit'] = "this field can contain only alphanumeric, - and _ characters"
+        
+        if data['size'] and not re.match("[SML]", data['size']):
+            errors['size'] = "must equal S, M or L"
+
+        if errors:
+            return jsonify(errors=errors), 400
+
+        data['user'] == session['login']
+        save_parcel_label(data)
+        return jsonify(message="Label successfully created"), 201
+
+    if request.method == 'DELETE':
+        id_ = request.form.get("id")
+        errors = {}
+        if not id_:
+            errors['id'] = "field cannot be empty"
+
+        if id_:
+            try:
+                UUID(id_, version=4)
+            except ValueError:
+                errors['id'] = "must be a valid uuid4"
+
+        if errors:
+            return jsonify(errors=errors), 400
+
+        if not check_if_parcel_exists(id_):
+            return jsonify(error="Parcel with this id does not exist"), 404
+
+        if db.hget(f'parcel: {id_}', 'user') != session['login']
+            return jsonify(error="This parcel does not belong to you"), 403
+
+        db.delete(id_)
+        return jsonify(message="Parcel successfully deleted"), 200
 
 
 if __name__ == '__main__':
