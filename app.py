@@ -3,21 +3,31 @@ from flask_session import Session
 from os import getenv
 from dotenv import load_dotenv
 from redis import StrictRedis
+from redis.exceptions import ConnectionError
 from bcrypt import checkpw, gensalt, hashpw
 from datetime import datetime
+import sys
+import re
 
 
 app = Flask(__name__)
-app.debug = False
+
 load_dotenv()
+SECRET_KEY = getenv("SECRET_KEY")
+SESSION_COOKIE_HTTPONLY = True
 REDIS_HOST = getenv("REDIS_HOST")
 REDIS_PASS = getenv("REDIS_PASS")
 db = StrictRedis(REDIS_HOST, db=10, password=REDIS_PASS)
 
+try:
+    db.info()
+except ConnectionError:
+    print("Couldn't connect to database. Process will terminate.")
+    sys.exit(-1)
+
 SESSION_TYPE = "redis"
 SESSION_REDIS = db
 app.config.from_object(__name__)
-app.secret_key = getenv("SECRET_KEY")
 ses = Session(app)
 
 
@@ -76,9 +86,34 @@ def registration_view_post():
     data['password2'] = request.form.get("password2", None)
     data['address'] = request.form.get("address", None)
     
+    errors = {}
     for k, v in data.items():
         if not v:
-            return jsonify(error=f"{k} field cannot be empty."), 400
+            errors[k] = "field cannot be empty"
+
+    if data['firstname'] and not re.match("^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+$", data['firstname']):
+        errors['firstname'] = "provide a valid firstname"
+
+    if data['lastname'] and not re.match("^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+$", data['lastname']):
+        errors['lastname'] = "provide a valid lastname"
+
+    if data['login'] and not re.match("[a-z]{3,12}", data['login']):
+        errors['login'] = "login must contain 3-12 small letters"
+
+    if data['email'] and not re.match("^[\w\-\.]+@([\w\-]+\.)+[\w]{1,}$", data['email']):
+        errors['email'] = "provide a valid email address"
+
+    if data['password'] and not re.match(".{8,}", data['password']):
+        errors['password'] = "password must contain at least 8 characters"
+
+    if data['password'] and data['password2'] and not data['password'] == data['password2']:
+        errors['password2'] = "passwords don't match"
+
+    if data['address'] and not re.match("^[0-9a-zA-ZĄĆĘŁŃÓŚŹŻąćęłńóśźż]+[\s\-\,]{0,}$", data['address']):
+        errors['address'] = "provide a valid address"
+    
+    if errors:
+        return jsonify(errors=errors), 400
 
     save_user(data)
     response = make_response("", 301)
@@ -103,10 +138,11 @@ def login_view_post():
             return jsonify(error=f"{k} field cannot be empty."), 400
 
     if check_if_user_credentials_are_valid(data['login'], data['password']):
-        session["login"] = login
+        session["login"] = data['login']
         session["timestamp"] = datetime.now()
         response = make_response("", 301)
         response.headers["Location"] = "/sender/dashboard"
+        return response
 
     return jsonify(error=f"Failed to login user with credentials given."), 400    
 
@@ -116,12 +152,16 @@ def logout_view():
     session.clear()
     response = make_response("", 301)
     response.headers["Location"] = "/"
+    return response
 
 
 @app.route('/sender/dashboard', methods=['GET'])
 def dashboard_view():
+    if 'login' not in session:
+        return jsonify(error="user not authenticated"), 403
+
     return render_template('dashboard.html')
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
