@@ -132,7 +132,7 @@ def registration_view_post():
     if data['password'] and data['password2'] and not data['password'] == data['password2']:
         errors['password2'] = "passwords don't match"
 
-    if data['address'] and not re.match("^[0-9a-zA-ZĄĆĘŁŃÓŚŹŻąćęłńóśźż]+[\s\-\,]{0,}$", data['address']):
+    if data['address'] and not re.match("^[A-ZĄĆĘŁŃÓŚŹŻ][0-9a-zA-ZĄĆĘŁŃÓŚŹŻąćęłńóśźż\s\-\,]+$", data['address']):
         errors['address'] = "provide a valid address"
     
     if errors:

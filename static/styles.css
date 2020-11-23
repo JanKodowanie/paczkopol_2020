@@ -7,16 +7,16 @@ html, body {
 }
 
 h1 {
-    font-size: 1.2vw;
+    font-size: calc(14px + 0.8vw);
     font-weight: 700;
     margin: 0;
     text-align: left;
 }
 
 .button1 {
-    font-size: 0.7vw;
+    font-size: calc(8px + 0.4vw);
     border: none;
-    padding: 2%;
+    padding: 3%;
     color: white;
     text-decoration: none;
     background-color: crimson;
@@ -28,21 +28,22 @@ h1 {
 
 #author {
     color: white;
-    margin: 8% 0;
-    font-size: 0.8vw;
+    margin: 0;
+    margin-top: 15%;
+    font-size: calc(10px + 0.6vw);
     font-weight: 700;
 }
 
 #description {
-    font-size: 0.8vw;
-    margin-top: 6%;
-    margin-bottom: 9.5%;
+    font-size: calc(8px + 0.4vw);
+    margin-top: 12%;
+    margin-bottom: 15.5%;
 }
 
 nav {
     font-weight: 400;
-    font-size: 0.6vw;
-    padding: 0.3vw 0.3vw;
+    font-size: calc(8px + 0.5vw);
+    padding: 0.3vw 0.5vw;
     background-color: rgba(0, 0, 0, 0.801);
 }
 
@@ -114,8 +115,8 @@ footer {
     color: #b5dcff;
     background-color: rgb(0, 0, 0);
     font-weight: 400;
-    font-size: 0.6vw;;
-    padding: 0.3vw 0.3vw;
+    font-size: calc(8px + 0.5vw);
+    padding: 0.3vw 0.5vw;
 }
 
 #registration-view {
@@ -132,7 +133,7 @@ footer {
 
 .greetings {
     margin: 0;
-    font-size: 0.8vw;
+    font-size: calc(8px + 0.5vw);
     width: 32vw; 
     text-align: justify;
 }
@@ -147,7 +148,7 @@ footer {
 }
 
 .form-list input:not([type=radio]) {
-    font-size: 0.7vw; 
+    font-size: calc(8px + 0.5vw); 
     width: 14.5vw; 
 }
 
@@ -171,7 +172,7 @@ footer {
 }
 
 .error-list li {
-    font-size: 0.7vw; 
+    font-size: calc(8px + 0.5vw);
     margin: 0.6vw;
     color: crimson;
     display: block;

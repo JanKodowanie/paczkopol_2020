@@ -1,7 +1,7 @@
 var nameReg = new RegExp("^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+$")
 var passReg = new RegExp(".{8,}")
 var loginReg = new RegExp("[a-z]{3,12}")
-var addressReg = new RegExp("^[0-9a-zA-ZĄĆĘŁŃÓŚŹŻąćęłńóśźż]+[\\s\\-\\,]{0,}$")
+var addressReg = new RegExp("^[A-ZĄĆĘŁŃÓŚŹŻ][0-9a-zA-ZĄĆĘŁŃÓŚŹŻąćęłńóśźż\\s\\-\\,]+$")
 var firstNameMessage = "Podaj poprawne imię"
 var lastNameMessage = "Podaj poprawne nazwisko"
 var loginMessage = "Login: podaj od 3 do 12 małych liter"
