@@ -8,13 +8,42 @@
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
     <title>Paczkopol</title>
 </head>
-    <body>
+    <body class="dashboard">
         <nav>
             <a class="nav-item" href="/">Strona główna</a>
-            <a class="nav-item" href="{{ url_for('logout_view') }}" >Wyloguj się</a>
+            <a class="nav-item" href="/sender/dashboard/new-parcel" >Dodaj etykietę</a>
+            <a class="nav-item" href="/sender/logout" >Wyloguj się</a>
         </nav>
         <div class="content">
-            <h1>Witaj, {{ session['login'] }}!</h1>
+            <div>
+                <h1 class="section-header1">Witaj, {{ session['login'] }}!</h1>
+            </div>
+            <div>
+                <h2 class="section-header2">Twoje etykiety:</h2>
+                <div class="dashboard-table">
+                    {% for label in labels %}
+                    <div class="parcel">
+                        <table class="parcel-data">
+                            <tr>
+                                <td class="parcel-index">Paczka {{ label["index"] }}</td>
+                            </tr>
+                            <tr>
+                                <td><span>id paczki:</span> <span class="parcel-id">{{ label["id"] }}</spam></td>
+                                <td><span>id skrytki:</span> {{ label["deposit"] }}</td>
+                                <td><span>rozmiar:</span> {{ label["size"] }}</td>
+                            </tr>
+                            <tr>
+                                <td><span>odbiorca:</span> {{ label["recipient"] }}</td>
+                            </tr>
+                        </table>
+                        <div class="button-wrapper1">
+                            <button class="button1">Usuń</button>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+             
         </div>
         <footer>
             <span id="pamw">Programowanie aplikacji mobilnych i webowych, 2020</span> 
