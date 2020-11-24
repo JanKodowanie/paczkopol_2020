@@ -10,7 +10,13 @@
     <body>
         <nav>
             <a class="nav-item" href="/">Strona główna</a>
-            <a class="nav-item" href="/sender/sign-up">Rejestracja</a>
+            {% if session["login"] %}
+                <a class="nav-item" href="/sender/dashboard">Panel użytkownika</a>
+                <a class="nav-item" href="{{ url_for('logout_view') }}">Wyloguj się</a>
+            {% else %}
+                <a class="nav-item" href="/sender/register">Zarejestruj się</a>
+                <a class="nav-item" href="/sender/login">Zaloguj się</a>
+            {% endif %}
         </nav>
         <div class="content">
             <header>  
@@ -18,7 +24,7 @@
                     <h1>Lider innowacyjności wśród polskich kurierów!</h1>
                     <p id="description">Chcesz wysłać babci prezent na urodziny? A może potrzebujesz natychmiast dostarczyć ważną dokumentację do urzędu?<br>
                         Nasi niezawodni kurierzy poradzą sobie w każdej sytuacji i dostarczą twoją przesyłkę tak szybko, jak husaria dotarła pod Wiedeń!</p>
-                    <a id="register-main-page" class="button1" href='/sender/sign-up'>Zarejestruj się już dziś!</a>
+                    <a id="register-main-page" class="button1" href="/sender/register">Zarejestruj się już dziś!</a>
                     <h2 id="author">Autor: Jan Dobrowolski</h2>
                 </section>    
                 <img id="logo" src="/static/Paczkopol.png">

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <script src="/static/parcelAdd.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
+    <title>Paczkopol</title>
+</head>
+    <body class="dashboard">
+        <nav>
+            <a class="nav-item" href="/">Strona główna</a>
+            <a class="nav-item" href="/sender/dashboard" >Panel użytkownika</a>
+            <a class="nav-item" href="/sender/logout" >Wyloguj się</a>
+        </nav>
+        <div class="content">
+            <section id="login-view">
+                <div class="greetings">
+                    <h1>Tutaj możesz stworzyć nową etykietę!</h1>
+                    <p>W przyszłości oznaczysz nią wysyłane przez siebie paczki.</p>
+                </div>
+                <ul class="error-list">
+                    <li class="error-mes-hidden" id="parcel-add-error"></li>
+                </ul>
+                <form class="registration-form" id="parcel-add-form" action="/sender/dashboard" method="POST" enctype="multipart/form-data">
+                    <ul class="form-list">
+                        <li>
+                            <input type="text" id="recipient" name="recipient" placeholder="Odbiorca">
+                        </li>
+                        <li>
+                            <input type="text" id="deposit" name="deposit" placeholder="ID skrytki">
+                        </li>
+                        <li class="radio-buttons">
+                            <label>Rozmiar paczki:</label>
+                            <input checked type="radio" name="size" value="S"><label for="S">S</label>
+                            <input type="radio" name="size" value="M"><label for="M">M</label>
+                            <input type="radio" name="size" value="L"><label for="L">L</label>
+                        </li>           
+                        <li>
+                            <button class="button1" type="submit">Zapisz etykietę</button>
+                        </li> 
+                    </ul>
+                </form>
+            </section>
+        </div>
+        <footer>
+            <span id="pamw">Programowanie aplikacji mobilnych i webowych, 2020</span> 
+            <a id="repo-link" target="_blank" href="https://github.com/JanKodowanie/paczkopol_2020" id="repo">Repozytorium Github</a>
+        </footer>
+    </body>
+</html>

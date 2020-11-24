@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    env_file:
+      - .env
+    build: ./
+    volumes:
+      - ./:/src
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+  redis:
+    image: "redis:alpine"    

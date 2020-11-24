@@ -7,16 +7,62 @@ html, body {
 }
 
 h1 {
-    font-size: 1.2vw;
+    font-size: calc(14px + 0.8vw);
     font-weight: 700;
     margin: 0;
     text-align: left;
 }
 
+.parcel {
+    display: flex;
+    margin-bottom: 0.5%;
+}
+
+.parcel-data {
+    font-size: calc(8px + 0.4vw);
+    padding: calc(5px + 1%);
+    background-color: #b5dcff;
+    border: thin solid;
+    width: 50%;
+}
+
+.parcel-data td:nth-of-type(1) {
+    width: 55%;
+}
+
+.parcel-data td:nth-of-type(2) {
+    width: 30%;
+}
+
+.parcel-data td:nth-of-type(3) {
+    width: 15%;
+}
+
+.parcel-index {
+    font-size: calc(10px + 0.5vw);
+    font-weight: 700;
+}
+
+.parcel-data span:not(.parcel-id) {
+    color: crimson;
+    font-weight: 700;
+}
+
+.section-header1 {
+    margin: 3% 0;
+}
+
+.section-header2 {
+    font-size: calc(10px + 0.6vw);
+    font-weight: 700;
+    margin: 2% 0;
+    text-align: left;
+}
+
 .button1 {
-    font-size: 0.7vw;
+    font-size: calc(8px + 0.4vw);
     border: none;
-    padding: 2%;
+    padding: calc(5px + 2%);
     color: white;
     text-decoration: none;
     background-color: crimson;
@@ -26,23 +72,28 @@ h1 {
     background-color: rgb(184, 15, 49);
 }
 
+.button-wrapper1 {
+    padding: calc(18px + 2%) calc(10px + 1%);
+}
+
 #author {
     color: white;
-    margin: 8% 0;
-    font-size: 0.8vw;
+    margin: 0;
+    margin-top: 15%;
+    font-size: calc(10px + 0.6vw);
     font-weight: 700;
 }
 
 #description {
-    font-size: 0.8vw;
-    margin-top: 6%;
-    margin-bottom: 9.5%;
+    font-size: calc(8px + 0.4vw);
+    margin-top: 12%;
+    margin-bottom: 15.5%;
 }
 
 nav {
     font-weight: 400;
-    font-size: 0.6vw;
-    padding: 0.3vw 0.3vw;
+    font-size: calc(8px + 0.5vw);
+    padding: 0.3vw 0.5vw;
     background-color: rgba(0, 0, 0, 0.801);
 }
 
@@ -76,6 +127,10 @@ header {
 
 .content {
     margin: 0 15%; 
+}
+
+.dashboard {
+    background-color: rgb(228, 179, 57);
 }
 
 .middle {
@@ -114,8 +169,8 @@ footer {
     color: #b5dcff;
     background-color: rgb(0, 0, 0);
     font-weight: 400;
-    font-size: 0.6vw;;
-    padding: 0.3vw 0.3vw;
+    font-size: calc(8px + 0.5vw);
+    padding: 0.3vw 0.5vw;
 }
 
 #registration-view {
@@ -124,9 +179,15 @@ footer {
     justify-content: space-between;
 }
 
+#login-view {
+    margin: 5% 0%;
+    display: flex;
+    justify-content: space-between;
+}
+
 .greetings {
     margin: 0;
-    font-size: 0.8vw;
+    font-size: calc(8px + 0.5vw);
     width: 32vw; 
     text-align: justify;
 }
@@ -141,7 +202,7 @@ footer {
 }
 
 .form-list input:not([type=radio]) {
-    font-size: 0.7vw; 
+    font-size: calc(8px + 0.5vw); 
     width: 14.5vw; 
 }
 
@@ -165,10 +226,14 @@ footer {
 }
 
 .error-list li {
-    font-size: 0.7vw; 
+    font-size: calc(8px + 0.5vw);
     margin: 0.6vw;
     color: crimson;
     display: block;
+}
+
+.form-list label {
+    font-size: calc(8px + 0.5vw);
 }
 
 .error-mes-hidden {
