@@ -249,8 +249,8 @@ def dashboard_view():
 
         return response
 
-    
-@app.route('/sender/dashboard/<id_>', methods=['DELETE'])
+# używam POST a nie DELETE, ponieważ wywołuję metodę z form w HTML 
+@app.route('/sender/dashboard/<id_>', methods=['POST'])
 def dashboard_view_delete(id_):
     if 'login' not in session:
         return jsonify(error="user not authenticated"), 401
@@ -274,8 +274,12 @@ def dashboard_view_delete(id_):
     if db.hget(f'parcel: {id_}', 'user') != session['login'].encode():
         return jsonify(error="This parcel does not belong to you"), 403
 
-    db.delete(id_)
-    return jsonify(message="Parcel successfully deleted"), 200
+    db.delete(f'parcel: {id_}')
+    response = make_response("", 301)
+    response.headers["Location"] = "/sender/dashboard"
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+
+    return response
 
 
 @app.route('/sender/dashboard/new-parcel', methods=['GET'])
